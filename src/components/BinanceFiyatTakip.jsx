@@ -1,8 +1,5 @@
-// src/components/BinanceFiyatTakip.js
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import KriptoBirimSecici from "./KriptoBirimSecici";
 
 const BinanceFiyatTakip = () => {
   const [kriptoBirimler, setKriptoBirimler] = useState([
@@ -14,24 +11,23 @@ const BinanceFiyatTakip = () => {
     { symbol: "TRBUSDT", fiyat: null, guncellemeZamani: null },
   ]);
 
+ 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const promises = kriptoBirimler.map(async (birim) => {
           const response = await axios.get(
-            `https://api.binance.com/api/v3/ticker/price?symbol=${birim.symbol}`,
-            {
-              // headers: {
-              //   "X-MBX-APIKEY": "API_ANAHTARIN_BURAYA",
-              // },
-            }
+            `https://api.binance.com/api/v3/ticker/price?symbol=${birim.symbol}`
           );
-
-          return {
+           
+          const updatedBirim = {
             ...birim,
             fiyat: response.data.price,
             guncellemeZamani: new Date().toLocaleTimeString(),
           };
+
+          return updatedBirim;
         });
 
         const updatedData = await Promise.all(promises);
@@ -39,6 +35,7 @@ const BinanceFiyatTakip = () => {
       } catch (error) {
         console.error("Binance API hatası:", error);
       }
+      
     };
 
     fetchData();
@@ -46,17 +43,11 @@ const BinanceFiyatTakip = () => {
     // Belirli aralıklarla güncelleme için bir zamanlayıcı ekle (örneğin, her 5 saniyede bir)
     const intervalId = setInterval(() => {
       fetchData();
-    }, 1000);
+    }, 60000);
 
     // Component unmount olduğunda zamanlayıcıyı temizle
     return () => clearInterval(intervalId);
   }, []); // Boş bağımlılık dizisi sadece componentDidMount benzeri bir davranış elde etmek için
-
-  const onBirimSec = (index, birim) => {
-    const updatedBirimler = [...kriptoBirimler];
-    updatedBirimler[index].symbol = birim;
-    setKriptoBirimler(updatedBirimler);
-  };
 
   return (
     <div className="border-2 p-2">
