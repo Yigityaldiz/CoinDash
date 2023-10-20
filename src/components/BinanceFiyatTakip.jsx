@@ -11,8 +11,6 @@ const BinanceFiyatTakip = () => {
     { symbol: "TRBUSDT", fiyat: null, guncellemeZamani: null },
   ]);
 
- 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,11 +18,11 @@ const BinanceFiyatTakip = () => {
           const response = await axios.get(
             `https://api.binance.com/api/v3/ticker/price?symbol=${birim.symbol}`
           );
-           
+
           const updatedBirim = {
             ...birim,
             fiyat: response.data.price,
-            guncellemeZamani: new Date().toLocaleTimeString(),
+            guncellemeZamani: new Date().toLocaleString(),
           };
 
           return updatedBirim;
@@ -35,7 +33,6 @@ const BinanceFiyatTakip = () => {
       } catch (error) {
         console.error("Binance API hatası:", error);
       }
-      
     };
 
     fetchData();
