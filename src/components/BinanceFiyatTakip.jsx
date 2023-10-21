@@ -40,64 +40,61 @@ const BinanceFiyatTakip = () => {
     // Belirli aralıklarla güncelleme için bir zamanlayıcı ekle (örneğin, her 5 saniyede bir)
     const intervalId = setInterval(() => {
       fetchData();
-    }, 60000);
+    }, 1000);
 
     // Component unmount olduğunda zamanlayıcıyı temizle
     return () => clearInterval(intervalId);
   }, []); // Boş bağımlılık dizisi sadece componentDidMount benzeri bir davranış elde etmek için
 
   return (
-    // <div className=" h-screen w-[100%]   ">
-     
-    //   {kriptoBirimler.map((birim, index) => (
-    //     <div key={index}>
-    //       <p>
-    //         {birim.symbol} Fiyatı:{" "}
-    //         <span style={{ color: birim.fiyat > 0 ? "green" : "red" }}>
-    //           {birim.fiyat || "Yükleniyor..."}
-    //         </span>
-    //       </p>
-    //       <p>Son Güncelleme: {birim.guncellemeZamani}</p>
-    //     </div>
-    //   ))} 
-    // </div>
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-  <a  class="flex items-center">
-     
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CoinDash</span>
-  </a>
-  <div class="flex md:order-2">
-    
-     
-  </div>
-  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-      <li>
-        <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-      </li>
-      <li>
-        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-      </li>
-    </ul>
-    
-  </div>
-  </div>
-</nav>
+    <div className=" ">
 
+      <div className="rounded-lg p-4 ">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">
+                  #
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Coin Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Last Update
+                </th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {kriptoBirimler.map((birim, index) => (
+                <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td class="px-6 py-4 font-medium">1</td>
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {birim.symbol}
+                  </th>
+                  
+                  <td class="px-6 py-4 font-bold">{" "}
+                    <span style={{ color: birim.fiyat > 0 ? "green" : "red" }}>
+                      {birim.fiyat || "Yükleniyor..."}
+                    </span></td>
+                  <td class="whitespace-nowrap px-6 py-4">{birim.guncellemeZamani}</td>
+                </tr>
+              ))}
+            </tbody>
 
-
+          </table>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default BinanceFiyatTakip;
 {
-  
+
 }
