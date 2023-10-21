@@ -45,7 +45,7 @@ const BtcPrice = () => {
       const priceChange =
         lastTenPrices[lastTenPrices.length - 1].price - lastTenPrices[0].price;
          setDegisim(priceChange);
-      // Fiyat değişimini döndürür.
+     
       return priceChange;
     }
   };

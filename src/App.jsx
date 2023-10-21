@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <BinanceFiyatTakip />
-      <BtcPrice />
+      {/* <BtcPrice /> */}
     </div>
   );
 }
