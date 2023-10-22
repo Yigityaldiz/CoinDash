@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
-const BinanceFiyatTakip = () => {
+const BinanceFiyatTakip = ({ degisim }) => {
   const [kriptoBirimler, setKriptoBirimler] = useState([
     { symbol: "BTCUSDT", fiyat: null, guncellemeZamani: null },
     { symbol: "ETHUSDT", fiyat: null, guncellemeZamani: null },
@@ -47,8 +49,8 @@ const BinanceFiyatTakip = () => {
   }, []); // Boş bağımlılık dizisi sadece componentDidMount benzeri bir davranış elde etmek için
 
   return (
-
     <div className=" ">
+      <Navbar />
 
       <div className="rounded-lg p-4 ">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -67,34 +69,51 @@ const BinanceFiyatTakip = () => {
                 <th scope="col" class="px-6 py-3">
                   Last Update
                 </th>
-                
+                <th scope="col" class="px-6 py-3">
+                  1m Change
+                </th>
               </tr>
             </thead>
             <tbody>
               {kriptoBirimler.map((birim, index) => (
-                <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr
+                  key={index}
+                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                >
                   <td class="px-6 py-4 font-medium">1</td>
-                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
                     {birim.symbol}
                   </th>
-                  
-                  <td class="px-6 py-4 font-bold">{" "}
-                    <span style={{ color: birim.fiyat > 0 ? "green" : "red" }}>
+
+                  <td class="px-6 py-4 font-bold">
+                    {" "}
+                    <span style={{ color: birim.fiyat > 0 ? "white" : "red" }}>
                       {birim.fiyat || "Yükleniyor..."}
-                    </span></td>
-                  <td class="whitespace-nowrap px-6 py-4">{birim.guncellemeZamani}</td>
+                    </span>
+                  </td>
+                  <td class="whitespace-nowrap px-6 py-4">
+                    {birim.guncellemeZamani}
+                  </td>
+                  <td>
+                    {" "}
+                    <span style={{ color: degisim > 0 ? "green" : "red" }}>
+                      {degisim}$
+                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>
-
           </table>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 export default BinanceFiyatTakip;
 {
-
 }
