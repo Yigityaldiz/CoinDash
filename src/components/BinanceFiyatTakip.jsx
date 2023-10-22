@@ -20,11 +20,11 @@ const BinanceFiyatTakip = ({ degisim }) => {
           const response = await axios.get(
             `https://api.binance.com/api/v3/ticker/price?symbol=${birim.symbol}`
           );
-
+      
           const updatedBirim = {
             ...birim,
             fiyat: response.data.price,
-            guncellemeZamani: new Date().toLocaleString(),
+            guncellemeZamani: new Date().toLocaleTimeString(),
           };
 
           return updatedBirim;
@@ -91,7 +91,7 @@ const BinanceFiyatTakip = ({ degisim }) => {
                   <td class="px-6 py-4 font-bold">
                     {" "}
                     <span style={{ color: birim.fiyat > 0 ? "white" : "red" }}>
-                      {birim.fiyat || "Yükleniyor..."}
+                    {parseFloat(birim.fiyat).toFixed(2) || "Yükleniyor..."}
                     </span>
                   </td>
                   <td class="whitespace-nowrap px-6 py-4">

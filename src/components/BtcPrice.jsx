@@ -59,23 +59,15 @@ const BtcPrice = ({ setDegisim }) => {
     if (lastTenPrices.length > 0) {
       const priceChange =
          lastTenPrices[0].price -  lastTenPrices[lastTenPrices.length - 1].price;
-
+      const formatChanged = priceChange.toFixed(2);
       // Fiyat değişimini döndürür.
-      setDegisim(priceChange);
+      setDegisim(formatChanged);
     }
   };
 
   return (
     <div>
-      <h1>Son 10 dakikanın fiyat değişimi: {priceChange}</h1>
-      <h2>Geçmiş Tüm Fiyatlar</h2>
-      <ul>
-        {allPrices.map((price, index) => (
-          <li key={index}>
-            {price.date}: {price.price}
-          </li>
-        ))}
-      </ul>
+   
     </div>
   );
 };
