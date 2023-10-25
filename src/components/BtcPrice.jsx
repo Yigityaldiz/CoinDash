@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 const BtcPrice = ({ setDegisim }) => {
   const [priceChange, setPriceChange] = useState(null);
   const [allPrices, setAllPrices] = useState([]);
@@ -16,7 +17,7 @@ const BtcPrice = ({ setDegisim }) => {
           price: response.data.price,
           date: new Date().toISOString(),
         };
-        console.log(newPrice);
+       
 
         let storedPrices = JSON.parse(localStorage.getItem("BTC")) || [];
 
@@ -58,7 +59,7 @@ const BtcPrice = ({ setDegisim }) => {
     // lastTenPrices dizisinin boş olup olmadığını kontrol edin.
     if (lastTenPrices.length > 0) {
       const priceChange =
-         lastTenPrices[0].price -  lastTenPrices[lastTenPrices.length - 1].price;
+        lastTenPrices[0].price - lastTenPrices[lastTenPrices.length - 1].price;
       const formatChanged = priceChange.toFixed(2);
       // Fiyat değişimini döndürür.
       setDegisim(formatChanged);
@@ -67,7 +68,7 @@ const BtcPrice = ({ setDegisim }) => {
 
   return (
     <div>
-   
+      
     </div>
   );
 };
